@@ -6,14 +6,9 @@
     tools:context=".fragments.GamesFragment"
     android:background="@color/colorAccent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Game"
-        android:textSize="48sp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:textColor="@android:color/white"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:listitem="@layout/holder_recycler_view_layout"/>
 
 </RelativeLayout>
