@@ -9,16 +9,20 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.senai.sp.jandira.testfragment.fragments.ConsolesFragment
 import com.senai.sp.jandira.testfragment.fragments.GamesFragment
 import com.senai.sp.jandira.testfragment.fragments.HomeFragment
 //View.OnClickListener, no main
-class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
-//    antiga variaveis
+class MainActivity : AppCompatActivity(),
+    BottomNavigationView.OnNavigationItemSelectedListener,
+    NavigationView.OnNavigationItemSelectedListener{
+//    antiga variaveis de botões do menu de cima
 //    private lateinit var buttonHome : Button
 //    private lateinit var buttonConsoles : Button
 //    private lateinit var buttonGames : Button
     private lateinit var bottomNavigation : BottomNavigationView
+    private lateinit var navigationView: NavigationView
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var consolesFragment: ConsolesFragment
@@ -26,8 +30,10 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        setContentView(R.layout.drawer_navigation_layout)
 //
 //        buttonHome = findViewById(R.id.button_home)
 //        buttonHome.setOnClickListener(this)
@@ -41,11 +47,13 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(this)
 
+        navigationView = findViewById(R.id.drawerNavigationView)
+        navigationView.setNavigationItemSelectedListener(this)
 
         homeFragment = HomeFragment()
         consolesFragment = ConsolesFragment()
         gamesFragment = GamesFragment()
-
+        //linha de comando para colocar o fragmento da home no frameLayout
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame , homeFragment)
