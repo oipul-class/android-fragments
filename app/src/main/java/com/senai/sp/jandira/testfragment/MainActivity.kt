@@ -2,9 +2,14 @@ package com.senai.sp.jandira.testfragment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -23,6 +28,10 @@ class MainActivity : AppCompatActivity(),
 //    private lateinit var buttonGames : Button
     private lateinit var bottomNavigation : BottomNavigationView
     private lateinit var navigationView: NavigationView
+
+    private lateinit var toolbar: Toolbar
+
+    private lateinit var drawer: DrawerLayout
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var consolesFragment: ConsolesFragment
@@ -50,14 +59,26 @@ class MainActivity : AppCompatActivity(),
         navigationView = findViewById(R.id.drawerNavigationView)
         navigationView.setNavigationItemSelectedListener(this)
 
+        drawer = findViewById(R.id.drawer)
+
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.title = "Home"
+
+        var toggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer)
+
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
+
         homeFragment = HomeFragment()
         consolesFragment = ConsolesFragment()
         gamesFragment = GamesFragment()
         //linha de comando para colocar o fragmento da home no frameLayout
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame , homeFragment)
-            .commit()
+       setFragment(homeFragment)
 
     }
 //  antigo comando do menu de cima
@@ -88,35 +109,44 @@ class MainActivity : AppCompatActivity(),
 //        }
 //    }
 
+
     //para navegação do menu
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
 
             R.id.menu_home -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame , homeFragment)
-                    .commit()
+                toolbar.title = "Home"
+                setFragment(homeFragment)
             }
 
             R.id.menu_console -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame , consolesFragment)
-                    .commit()
+                toolbar.title = "Console"
+               setFragment(consolesFragment)
             }
 
             R.id.menu_games -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame , gamesFragment)
-                    .commit()
+                toolbar.title = "Games"
+                setFragment(gamesFragment)
             }
+        }
 
+        // *** Selecionar o item de menu no BottomNavigationView ***
+        var selectedMenu = bottomNavigation.menu.findItem(item.itemId)
+        selectedMenu.isChecked = true
 
+        // *** fechar o drawer se estuver aberto ***
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
         }
 
         return true
+    }
+
+    fun setFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.frame , fragment)
+            .commit()
     }
 }

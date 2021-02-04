@@ -35,7 +35,11 @@
 <!--    </LinearLayout-->
 
     <!-- FrameLayout é onde os fragmentos de layout iram ser carregados  -->
+
+    <include layout="@layout/toolbar"/>
+
     <FrameLayout
+        android:layout_below="@+id/toolbar"
         android:id="@+id/frame"
         android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
