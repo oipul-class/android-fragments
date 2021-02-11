@@ -9,7 +9,7 @@ import com.senai.sp.jandira.testfragment.model.Game
 
 class GamingAdapter: RecyclerView.Adapter<GameViewHolder>() {
 
-    private  var gameList = listOf<Game>()
+    private var gameList = listOf<Game>()
 
     fun updateGameList(list: List<Game>) {
         gameList = list

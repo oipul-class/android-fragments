@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/console_name"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Play Station 4"
+            android:textSize="20sp"/>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/black"
+            android:layout_below="@id/console_name"/>
+
+        <ImageView
+            android:id="@+id/console_image"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/ps4"
+            android:layout_below="@+id/console_name"
+            android:layout_alignParentRight="true"/>
+
+
+        <TextView
+            android:id="@+id/console_maker"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sony"
+            android:layout_below="@id/console_image"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/console_release_date"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="10/10/2010"
+            android:layout_below="@id/console_maker"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

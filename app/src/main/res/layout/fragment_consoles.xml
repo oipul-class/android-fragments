@@ -6,13 +6,10 @@
     tools:context=".fragments.ConsolesFragment"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Console"
-        android:textSize="48sp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:textColor="@android:color/white"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_consoles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/holder_console_layout"/>
 
 </RelativeLayout>
