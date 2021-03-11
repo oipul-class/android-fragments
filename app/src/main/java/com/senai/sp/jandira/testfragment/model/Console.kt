@@ -1,11 +1,15 @@
 package com.senai.sp.jandira.testfragment.model
 
 import android.graphics.drawable.Drawable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Console (
-    var id: Long,
-    var consoleName: String,
-    var consoleImage: Drawable,
-    var consoleMaker: String,
-    var consoleReleaseDate: String
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    @ColumnInfo(name = "name") var consoleName: String,
+    @ColumnInfo(name = "image") var consoleImage: String,
+    @ColumnInfo(name = "maker") var consoleMaker: String,
+    @ColumnInfo(name = "release_date") var consoleReleaseDate: String
 )
